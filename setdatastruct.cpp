@@ -167,52 +167,37 @@ int main() {
 
     for (int j=0; j < tc; j++) {
         std::cin >> dt;
-        if (dt==5){ 
-            std::cin >> dt;
+        if (dt == 5) {
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
-        std::cin.ignore(); 
-
-        // Declare all sets outside of if-else to maintain scope
+  
         Set<int> intSet1, intSet2;
         Set<double> doubleSet1, doubleSet2;
         Set<char> charSet1, charSet2;
         Set<std::string> stringSet1, stringSet2;
         
         if (dt == 1) {
-            std::cout << "Enter elements for first integer set:\n";
             intSet1.insertFromInput();
             intSet1.print();
-    
-            std::cout << "Enter elements for second integer set:\n";
             intSet2.insertFromInput();
             intSet2.print();
         } else if (dt == 2) {
-            std::cout << "Enter elements for first double set:\n";
             doubleSet1.insertFromInput();
             doubleSet1.print();
-    
-            std::cout << "Enter elements for second double set:\n";
             doubleSet2.insertFromInput();
             doubleSet2.print();
         } else if (dt == 3) {
-            std::cout << "Enter elements for first char set:\n";
             charSet1.insertFromInput();
             charSet1.print();
-    
-            std::cout << "Enter elements for second char set:\n";
             charSet2.insertFromInput();
             charSet2.print();
-        } else if (dt == 4) {
-            std::cout << "Enter elements for first string set:\n";
+        } else if (dt == 4 || dt == 5) {
             stringSet1.insertFromInput();
             stringSet1.print();
-    
-            std::cout << "Enter elements for second string set:\n";
             stringSet2.insertFromInput();
             stringSet2.print();
         }  else {
-            std::cout << "Invalid choice! Please enter a number between 1 and 4.\n";
-            return 1; // Exit with error
+            return 1; // Data type invalid
         }
     
         std::cin >> n;
@@ -226,108 +211,146 @@ int main() {
             std::vector<std::string> tokens;
             tokenize(input, tokens);
 
-            std::cout << "Tokens: ";
-            for (const auto &token : tokens) {
-                std::cout << "\"" << token << "\" ";
-            }
-            std::cout << std::endl;
-
             processTokens(tokens, t1, t2, value, dt);
-            std::visit([](const auto& val) { std::cout << val; }, value);
 
             switch (t1) {
                 case 1:
-                    std::visit([&](auto&& val) {
-                        using ValueType = std::decay_t<decltype(val)>;
-                        if constexpr (std::is_same_v<ValueType, int> && dt == 1) {
-                            Set<int> set1 = intSet1;
-                            Set<int> set2 = intSet2;
-                            if (t2 == 1) {
-                                set1.insert(value);
-                                set1.print();
-                            } else {
-                                set2.insert(value);
-                                set2.print();
-                            }
-                        }
-                        if (dt==2) {
-                            Set<double> set1 = doubleSet1;
-                            Set<double> set2 = doubleSet2;
-                            if (t2 == 1) {
-                                set1.insert(value);
-                                set1.print();
-                            } else {
-                                set2.insert(value);
-                                set2.print();
-                            }
-                        }
-                        if (dt==3) {
-                            Set<char> set1 = charSet1;
-                            Set<char> set2 = charSet2;
-                            if (t2 == 1) {
-                                set1.insert(value);
-                                set1.print();
-                            } else {
-                                set2.insert(value);
-                                set2.print();
-                            }
-                        }
-                        if (dt==4) {
-                            Set<std::string> set1 = stringSet1;
-                            Set<std::string> set2 = stringSet2;
-                            if (t2 == 1) {
-                                set1.insert(value);
-                                set1.print();
-                            } else {
-                                set2.insert(value);
-                                set2.print();
-                            }
-                        }
-                    }, value);
-                    break;
-            
-                case 2:
                     if (dt==1) {
                         Set<int> set1 = intSet1;
                         Set<int> set2 = intSet2;
+                        int valueInt;
+                        if (std::holds_alternative<int>(value)) {
+                            valueInt = std::get<int>(value);
+                        } else {
+                            std::cerr << "Error: value is not an int\n";
+                        }
                         if (t2 == 1) {
-                            set1.remove(value);
+                            set1.insert(valueInt);
                             set1.print();
                         } else {
-                            set2.remove(value);
+                            set2.insert(valueInt);
                             set2.print();
                         }
                     }
                     if (dt==2) {
                         Set<double> set1 = doubleSet1;
                         Set<double> set2 = doubleSet2;
+                        double valueDouble;
+                        if (std::holds_alternative<double>(value)) {
+                            valueDouble = std::get<double>(value);
+                        } else {
+                            std::cerr << "Error: value is not a double\n";
+                        }
                         if (t2 == 1) {
-                            set1.remove(value);
+                            set1.insert(valueDouble);
                             set1.print();
                         } else {
-                            set2.remove(value);
+                            set2.insert(valueDouble);
                             set2.print();
                         }
                     }
                     if (dt==3) {
                         Set<char> set1 = charSet1;
                         Set<char> set2 = charSet2;
+                        char valueChar;
+                        if (std::holds_alternative<char>(value)) {
+                            valueChar = std::get<char>(value);
+                        } else {
+                            std::cerr << "Error: value is not an int\n";
+                        }
                         if (t2 == 1) {
-                            set1.remove(value);
+                            set1.insert(valueChar);
                             set1.print();
                         } else {
-                            set2.remove(value);
+                            set2.insert(valueChar);
                             set2.print();
                         }
                     }
-                    if (dt==4) {
+                    if (dt==4 || dt==5) {
                         Set<std::string> set1 = stringSet1;
                         Set<std::string> set2 = stringSet2;
+                        std::string valueString;
+                        if (std::holds_alternative<std::string>(value)) {
+                            valueString = std::get<std::string>(value);
+                        } else {
+                            std::cerr << "Error: value is not an int\n";
+                        }
                         if (t2 == 1) {
-                            set1.remove(value);
+                            set1.insert(valueString);
                             set1.print();
                         } else {
-                            set2.remove(value);
+                            set2.insert(valueString);
+                            set2.print();
+                        }
+                    }
+                    break;
+            
+                case 2:
+                    if (dt==1) {
+                        Set<int> set1 = intSet1;
+                        Set<int> set2 = intSet2;
+                        int valueInt;
+                        if (std::holds_alternative<int>(value)) {
+                            valueInt = std::get<int>(value);
+                        } else {
+                            std::cerr << "Error: value is not an int\n";
+                        }
+                        if (t2 == 1) {
+                            set1.remove(valueInt);
+                            set1.print();
+                        } else {
+                            set2.remove(valueInt);
+                            set2.print();
+                        }
+                    }
+                    if (dt==2) {
+                        Set<double> set1 = doubleSet1;
+                        Set<double> set2 = doubleSet2;
+                        double valueDouble;
+                        if (std::holds_alternative<double>(value)) {
+                            valueDouble = std::get<double>(value);
+                        } else {
+                            std::cerr << "Error: value is not a double\n";
+                        }
+                        if (t2 == 1) {
+                            set1.remove(valueDouble);
+                            set1.print();
+                        } else {
+                            set2.remove(valueDouble);
+                            set2.print();
+                        }
+                    }
+                    if (dt==3) {
+                        Set<char> set1 = charSet1;
+                        Set<char> set2 = charSet2;
+                        char valueChar;
+                        if (std::holds_alternative<char>(value)) {
+                            valueChar = std::get<char>(value);
+                        } else {
+                            std::cerr << "Error: value is not an int\n";
+                        }
+                        if (t2 == 1) {
+                            set1.remove(valueChar);
+                            set1.print();
+                        } else {
+                            set2.remove(valueChar);
+                            set2.print();
+                        }
+                    }
+                    if (dt==4 || dt==5) {
+                        Set<std::string> set1 = stringSet1;
+                        Set<std::string> set2 = stringSet2;
+                        std::string valueString;
+                        if (std::holds_alternative<std::string>(value)) {
+                            valueString = std::get<std::string>(value);
+                        } else {
+                            std::cerr << "Error: value is not an string\n";
+                        }
+                        if (t2 == 1) {
+                            set1.remove(valueString);
+                            set1.print();
+                        } else {
+                            set2.remove(valueString);
                             set2.print();
                         }
                     }
@@ -349,7 +372,7 @@ int main() {
                         Set<char> set2 = charSet2;
                         std::cout << (set1.isSubset(set2) ? "true\n" : "false\n");
                     }
-                    if (dt==4) {
+                    if (dt==4 || dt==5) {
                         Set<std::string> set1 = stringSet1;
                         Set<std::string> set2 = stringSet2;
                         std::cout << (set1.isSubset(set2) ? "true\n" : "false\n");
@@ -372,7 +395,7 @@ int main() {
                         Set<char> set2 = charSet2;
                         set1.setUnion(set2).print();
                     }
-                    if (dt==4) {
+                    if (dt==4 || dt==5) {
                         Set<std::string> set1 = stringSet1;
                         Set<std::string> set2 = stringSet2;
                         set1.setUnion(set2).print();
@@ -395,7 +418,7 @@ int main() {
                         Set<char> set2 = charSet2;
                         set1.intersection(set2).print();
                     }
-                    if (dt==4) {
+                    if (dt==4 || dt==5) {
                         Set<std::string> set1 = stringSet1;
                         Set<std::string> set2 = stringSet2;
                         set1.intersection(set2).print();
@@ -418,7 +441,7 @@ int main() {
                         Set<char> set2 = charSet2;
                         set1.difference(set2).print();
                     }
-                    if (dt==4) {
+                    if (dt==4 || dt==5) {
                         Set<std::string> set1 = stringSet1;
                         Set<std::string> set2 = stringSet2;
                         set1.difference(set2).print();
@@ -431,7 +454,6 @@ int main() {
                         Set<int> set2 = intSet2;
 
                         std::vector<Set<int>> powerSet;
-                        std::vector<Set<int>>::iterator it;
                         std::cout << "{empty,";
                         powerSet = (t2 == 1) ? set1.powerSet() : set2.powerSet();
                         auto it = powerSet.begin();
@@ -451,7 +473,6 @@ int main() {
                         Set<double> set2 = doubleSet2;
 
                         std::vector<Set<double>> powerSet;
-                        std::vector<Set<double>>::iterator it;
                         std::cout << "{empty,";
                         powerSet = (t2 == 1) ? set1.powerSet() : set2.powerSet();
                         auto it = powerSet.begin();
@@ -471,7 +492,6 @@ int main() {
                         Set<char> set2 = charSet2;
 
                         std::vector<Set<char>> powerSet;
-                        std::vector<Set<char>>::iterator it;
                         std::cout << "{empty,";
                         powerSet = (t2 == 1) ? set1.powerSet() : set2.powerSet();
                         auto it = powerSet.begin();
@@ -486,12 +506,11 @@ int main() {
                         }
                         std::cout << "}\n";
                     }
-                    if (dt==4) {
+                    if (dt==4 || dt==5) {
                         Set<std::string> set1 = stringSet1;
                         Set<std::string> set2 = stringSet2;
                         
                         std::vector<Set<std::string>> powerSet;
-                        std::vector<Set<std::string>>::iterator it;
                         std::cout << "{empty,";
                         powerSet = (t2 == 1) ? set1.powerSet() : set2.powerSet();
                         auto it = powerSet.begin();

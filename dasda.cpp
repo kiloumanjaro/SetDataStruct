@@ -205,67 +205,67 @@ int main() {
                 std::cout << "\n(" << typeid(val).name() << ") " << std::endl; 
             }, value);
 
-            // switch (t1) {
-            //     case 1:
-            //         if (t2 == 1) {
-            //             set1.insert(value);
-            //             set1.print();
-            //         } else {
-            //             set2.insert(value);
-            //             set2.print();
-            //         }
-            //         break;
+            switch (t1) {
+                case 1:
+                    if (t2 == 1) {
+                        set1.insert(value);
+                        set1.print();
+                    } else {
+                        set2.insert(value);
+                        set2.print();
+                    }
+                    break;
         
-            //     case 2:
-            //         if (t2 == 1) {
-            //             set1.remove(value);
-            //             set1.print();
-            //         } else {
-            //             set2.remove(value);
-            //             set2.print();
-            //         }
-            //         break;
+                case 2:
+                    if (t2 == 1) {
+                        set1.remove(value);
+                        set1.print();
+                    } else {
+                        set2.remove(value);
+                        set2.print();
+                    }
+                    break;
         
-            //     case 3:
-            //         std::cout << (set1.isSubset(set2) ? "true\n" : "false\n");
-            //         break;
+                case 3:
+                    std::cout << (set1.isSubset(set2) ? "true\n" : "false\n");
+                    break;
         
-            //     case 4:
-            //         set1.setUnion(set2).print();
-            //         break;
+                case 4:
+                    set1.setUnion(set2).print();
+                    break;
         
-            //     case 5:
-            //         set1.intersection(set2).print();
-            //         break;
+                case 5:
+                    set1.intersection(set2).print();
+                    break;
         
-            //     case 6:
-            //         set1.difference(set2).print();
-            //         break;
+                case 6:
+                    set1.difference(set2).print();
+                    break;
         
-            //     case 7: {
+                case 7: {
 
-            //         std::cout << "{empty,";
+                    std::cout << "{empty,";
         
-            //         powerSet = (t2 == 1) ? set1.powerSet() : set2.powerSet();
-            //         auto it = powerSet.begin();
-            //         if (it != powerSet.end()) ++it;
+                    powerSet = (t2 == 1) ? set1.powerSet() : set2.powerSet();
+                    auto it = powerSet.begin();
+                    if (it != powerSet.end()) ++it;
         
-            //         for (auto last = powerSet.end(); it != last;) {
-            //             it->powerPrint();
-            //             ++it;
-            //             if (it != last) {
-            //                 std::cout << ",";
-            //             }
-            //         }
+                    for (auto last = powerSet.end(); it != last;) {
+                        it->powerPrint();
+                        ++it;
+                        if (it != last) {
+                            std::cout << ",";
+                        }
+                    }
         
-            //         std::cout << "}\n";
-            //         break;
-            //     }
+                    std::cout << "}\n";
+                    break;
+                }
         
-            //     default:
-            //         std::cout << "Invalid choice. Try again.\n";
-            //         break;
-            // }
+                default:
+                    std::cout << "Invalid choice. Try again.\n";
+                    break;
+            }
         }
     }
 }    
