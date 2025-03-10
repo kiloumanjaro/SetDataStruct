@@ -8,20 +8,20 @@ This project implements the "set" data structure, which is a container that stor
 ### Features
 
 Implements a set as a template class, allowing different types of sets:
-- set<int>
-- set<double>
-- set<char>
-- set<string>
-- set<set<int>> (nested sets)
-Supports the following operations:
-- Insert: Add an element to the set.
-- Remove: Delete an element from the set.
-- Subset: Check if one set is a subset of another.
-- Union: Compute the union of two sets.
-- Intersection: Compute the intersection of two sets.
-- Difference: Compute the difference between two sets.
-- Power Set: Generate the power set of a given set.
+- `set<int>`
+- `set<double>`
+- `set<char>`
+- `set<string>`
+- `set<set<int>>` (nested sets)
 
+Supports the following operations:
+- **Insert**: Add an element to the set.
+- **Remove**: Delete an element from the set.
+- **Subset**: Check if one set is a subset of another.
+- **Union**: Compute the union of two sets.
+- **Intersection**: Compute the intersection of two sets.
+- **Difference**: Compute the difference between two sets.
+- **Power Set**: Generate the power set of a given set.
 
 
 ### Constraints
