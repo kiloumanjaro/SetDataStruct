@@ -154,9 +154,6 @@ To run the input file version of the program, use:
 - Implement an optimized hashing strategy for faster set operations.
 
 - Provide an interactive mode for manual testing.
-## Authors
-
-- [@kiloumanjaro](https://github.com/kiloumanjaro)
 
 
 #### Sample Output
@@ -173,3 +170,9 @@ false
 {empty,{{a}},{{x,y}},{{0,1,2}},{{a},{x,y}},{{a},{0,1}},{{x,y},{0,1,2}},{{a},{x,y},{0,1,2}}}
 {empty,{{a}},{{a,b}},{{a,b,c}},{{0}},{{1}},{{a},{a,b}},{{a},{a,b,c}},{{a},{0}},{{a},{1}},{{a,b},{a,b,c}},{{a,b},{0}},{{a,b},{1}},{{a,b,c},{0}},{{a,b,c},{1}},{{0},{1}},{{a},{a,b},{a,b,c}},{{a},{a,b},{0}},{{a},{a,b},{1}},{{a},{a,b,c},{0}},{{a},{a,b,c},{1}},{{0},{1}},{{a},{a,b},{a,b,c},{0},{1}}}
 ```
+
+## Authors
+
+- [@kiloumanjaro](https://github.com/kiloumanjaro)
+
+
