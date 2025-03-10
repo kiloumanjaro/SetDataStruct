@@ -1,8 +1,6 @@
 
 # Set Data Structure Implementation (C++)
 
-This project implements the "set" data structure, which is a container that stores unique elements without any particular order while allowing for fast access. The implementation provides operations for inserting, removing, and performing various set operations such as subset verification, union, intersection, difference, and power set computation.
-
 ### Overview
 This project implements the "set" data structure, which is a container that stores unique elements without any particular order while allowing for fast access. The implementation provides operations for inserting, removing, and performing various set operations such as subset verification, union, intersection, difference, and power set computation.
 ### Features
